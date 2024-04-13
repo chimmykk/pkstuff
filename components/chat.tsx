@@ -96,7 +96,7 @@ export default function Chat() {
         <div className='fixed right-0 bottom-0 md:right-8 md:mb-12 md:bottom-12 overflow-y-hidden'>
           <div className="relative flex flex-col gap-4 md:rounded-lg shadow-md h-screen w-screen md:h-[600px] md:w-[400px] z-30 bg-white">
             <div className='md:rounded-t-lg flex justify-between py-2 px-4 bg-[#2464EA] text-white font-medium'>
-              <h1 className='mt-12 sm:mt-0'>Assistant Bot</h1>
+              <h1 className=''>Assistant Bot</h1>
               <button className='cursor-pointer bg-[#2464EA]' onClick={handleAvatarClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
