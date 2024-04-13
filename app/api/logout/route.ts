@@ -24,15 +24,3 @@ export async function POST() {
     });
   }
 }
-
-// To handle cases where the method is not POST
-export function middleware(request: NextRequest) {
-  if (request.method !== 'POST') {
-    return new NextResponse(JSON.stringify({ message: "Method Not Allowed" }), {
-      status: 405, // Method Not Allowed
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-}
