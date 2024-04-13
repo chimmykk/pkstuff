@@ -278,9 +278,9 @@ const [isLoading, setIsLoading] = useState(true); // State variable to track loa
     <div className="modal px-4 md:p-[20px] py-12 md:px-8 w-10/12 md:w-1/2">
       <h2 className='text-blue-700 mt-8'>Submission Status:</h2>
       <p className='my-4'>{submissionStatus}</p>
-      <div className="flex justify-between"> {/* Adjust layout as needed */}
+      <div className="flex flex-col md:flex-row justify-between"> {/* Adjust layout as needed */}
       
-        <Link href={'/attendance-records'} className="px-4 py-1 bg-blue-500 text-white rounded-lg mt-2" >Check today's attendance</Link>
+        <Link href={'/attendance-records'} className="px-4 py-1 bg-blue-500 text-white rounded-lg mt-2 text-center" >Check today's attendance</Link>
 
         <button className="px-4 py-1 bg-red-500 text-white rounded-lg mt-2" onClick={() => setShowModal(false)}>Close</button>
       </div>
