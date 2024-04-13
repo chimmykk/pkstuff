@@ -87,44 +87,53 @@ export default function List() {
 
     return (
         <div className="relative min-h-screen bg-gray-100">
-            <div className="container mx-auto p-4">
-                <div className="mb-4">
-                    <button
-                        onClick={() => { setShowModal(true); setEditMode(false); setCurrentStudent({ name: '', rrn: '', GuardianGmail: '' }); }}
-                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-200"
-                    >
-                        Add Student
-                    </button>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow mb-4">
-    {/* Headings */}
-    <div className="grid grid-cols-4 gap-4 py-2 items-center font-bold">
-        <div className="col-span-1 text-left">Name</div>
-        <div className="col-span-1 text-center">RRN</div>
-        <div className="col-span-2 text-right">Guardian's email</div>
-    </div>
-    {/* Student List Here */}
-    {students.map((student: Student) => (
-        <div key={student.id} className="grid grid-cols-4 gap-4 py-2 items-center relative">
-            <div className="col-span-1 text-left">{student.name}</div>
-            <div className="col-span-1 text-center">{student.rrn}</div>
-            <div className="col-span-2 flex  gap-2 justify-end text-right">
-                <div>
-                {student.GuardianGmail}
-                </div>
-                <button
-                onClick={() => handleEditClick(student)}
-               className=''
+        <div className="container mx-auto p-4">
+          <div className="mb-4">
+            <button
+              onClick={() => { setShowModal(true); setEditMode(false); setCurrentStudent({ name: '', rrn: '', GuardianGmail: '' }); }}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-200"
             >
-            <BsPencilSquare className='text-soft-blue'/>
-            </button>    
-            </div>
+              Add Student
+            </button>
+          </div>
+          <div className=" p-4 rounded-lg overflow-x-auto shadow mb-4">
+            {/* Student List as Table */}
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
+                    RRN
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
+                    Guardian's email
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className=" ">
+                {students.map((student: Student) => (
+                  <tr key={student.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.rrn}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.GuardianGmail}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button onClick={() => handleEditClick(student)} className="text-blue-600 hover:text-blue-900">
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-    ))}
-</div>
 
-
-            </div>
+      
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
