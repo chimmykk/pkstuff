@@ -94,7 +94,7 @@ export default function Chat() {
 
       {isChatOpen && (
         <div className='fixed right-0 bottom-0 md:right-8 md:mb-12 md:bottom-12 overflow-y-hidden'>
-          <div className="relative flex flex-col gap-4 md:rounded-lg shadow-md h-screen w-screen md:h-[600px] md:w-[400px] z-30 bg-white">
+          <div className="relative flex flex-col gap-4 md:rounded-lg shadow-md h-screen top-0 w-screen md:h-[600px] md:w-[400px] z-30 bg-white">
             <div className='md:rounded-t-lg flex justify-between py-2 px-4 bg-[#2464EA] text-white font-medium'>
               <h1 className=''>Assistant Bot</h1>
               <button className='cursor-pointer bg-[#2464EA]' onClick={handleAvatarClick}>
