@@ -31,7 +31,7 @@ export default function Chat() {
   const handleOptionClick = (option: any) => {
     setSelectedOption(option);
     if (option === "Check student's attendance") {
-      window.location.href = 'https://class-stats.vercel.app/attendance-records';
+      window.location.href = 'http://localhost:3000/attendance-records';
     } else if (option === "Check student's result") {
       // Show loading indicator
       setMessageResponsePairs([...messageResponsePairs, { message: option, response: 'Typing...' }]);
@@ -39,7 +39,7 @@ export default function Chat() {
   
       // Simulate loading with a setTimeout
       setTimeout(() => {
-        let newResponse = `To check student's result, please click <a href="https://class-stats.vercel.app/exam-results"><span class="attendance-link">here</span></a>.`;
+        let newResponse = `To check student's result, please click <a href="http://localhost:3000/exam-results"><span class="attendance-link">here</span></a>.`;
         // Replace the last message in the array with the actual response
         setMessageResponsePairs((prevMessages: any) => {
           const updatedMessages = [...prevMessages];
@@ -61,9 +61,9 @@ export default function Chat() {
       setTimeout(() => {
         let newResponse;
         if (inputValue.toLowerCase().includes('attendance')) {
-          newResponse = `To check attendance, please click <a href="https://class-stats.vercel.app/attendance-records"><span class="attendance-link">here</span></a>.`; 
+          newResponse = `To check attendance, please click <a href="http://localhost:3000/attendance-records"><span class="attendance-link">here</span></a>.`; 
         } else if (inputValue.toLowerCase().includes('result')) {
-          newResponse = `To check student's result, please click <a href="https://class-stats.vercel.app/exam-results"><span class="attendance-link">here</span></a>.`;
+          newResponse = `To check student's result, please click <a href="http://localhost:3000/exam-results"><span class="attendance-link">here</span></a>.`;
         } else {
           newResponse = 'Cannot find context.';
         }
@@ -94,9 +94,9 @@ export default function Chat() {
 
       {isChatOpen && (
         <div className='fixed right-0 bottom-0 md:right-8 md:mb-12 md:bottom-12 overflow-y-hidden'>
-          <div className="relative flex flex-col gap-4 md:rounded-lg shadow-md h-screen top-0 w-screen md:h-[600px] md:w-[400px] z-30 bg-white">
+          <div className="relative flex flex-col gap-4 md:rounded-lg shadow-md h-screen w-screen md:h-[600px] md:w-[400px] z-30 bg-white">
             <div className='md:rounded-t-lg flex justify-between py-2 px-4 bg-[#2464EA] text-white font-medium'>
-              <h1 className=''>Assistant Bot</h1>
+              <h1 className='mt-12 sm:mt-0'>Assistant Bot</h1>
               <button className='cursor-pointer bg-[#2464EA]' onClick={handleAvatarClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
