@@ -31,7 +31,7 @@ export default function Chat() {
   const handleOptionClick = (option: any) => {
     setSelectedOption(option);
     if (option === "Check student's attendance") {
-      window.location.href = 'http://localhost:3000/attendance-records';
+      window.location.href = 'https://class-stats.vercel.app/attendance-records';
     } else if (option === "Check student's result") {
       // Show loading indicator
       setMessageResponsePairs([...messageResponsePairs, { message: option, response: 'Typing...' }]);
@@ -39,7 +39,7 @@ export default function Chat() {
   
       // Simulate loading with a setTimeout
       setTimeout(() => {
-        let newResponse = `To check student's result, please click <a href="http://localhost:3000/exam-results"><span class="attendance-link">here</span></a>.`;
+        let newResponse = `To check student's result, please click <a href="https://class-stats.vercel.app/exam-results"><span class="attendance-link">here</span></a>.`;
         // Replace the last message in the array with the actual response
         setMessageResponsePairs((prevMessages: any) => {
           const updatedMessages = [...prevMessages];
@@ -61,9 +61,9 @@ export default function Chat() {
       setTimeout(() => {
         let newResponse;
         if (inputValue.toLowerCase().includes('attendance')) {
-          newResponse = `To check attendance, please click <a href="http://localhost:3000/attendance-records"><span class="attendance-link">here</span></a>.`; 
+          newResponse = `To check attendance, please click <a href="https://class-stats.vercel.app/attendance-records"><span class="attendance-link">here</span></a>.`; 
         } else if (inputValue.toLowerCase().includes('result')) {
-          newResponse = `To check student's result, please click <a href="http://localhost:3000/exam-results"><span class="attendance-link">here</span></a>.`;
+          newResponse = `To check student's result, please click <a href="https://class-stats.vercel.app/exam-results"><span class="attendance-link">here</span></a>.`;
         } else {
           newResponse = 'Cannot find context.';
         }
