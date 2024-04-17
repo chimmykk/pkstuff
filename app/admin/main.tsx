@@ -54,7 +54,6 @@ const [isLoading, setIsLoading] = useState(true); // State variable to track loa
 
     } catch (error) {
       console.error('Failed to fetch students:', error);
-      alert('Failed to fetch students list');
     }
   };
 
