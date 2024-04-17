@@ -24,7 +24,7 @@ export default function RootLayout({
        <Navbar />
         {children}
         <div 
-          className="text-lg fixed bottom-6 right-6">
+          className="text-lg fixed bottom-16 lg:bottom-6 right-6">
           <Chat />
         </div>
       </body>
