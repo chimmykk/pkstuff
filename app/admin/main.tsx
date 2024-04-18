@@ -29,12 +29,6 @@ const [isSubmitted, setisSubmitted] = useState(false)
 const [showTickTooltip, setShowTickTooltip] = useState(false);
 const [isLoading, setIsLoading] = useState(true); // State variable to track loading status
 
-
-
-
-
-
-
     console.log('Temp Attendance Records:', tempAttendanceRecords);
 
     console.log('students', students)
