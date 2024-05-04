@@ -30,7 +30,7 @@ export default async function AuthenticationPage() {
                 Admin Log in
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter admin Password
+                Enter admin Username & Password
               </p>
             </div>
             <UserAuthForm />

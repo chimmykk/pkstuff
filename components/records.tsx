@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface AttendanceRecord {
@@ -18,7 +19,7 @@ export default function AttendanceRecords() {
   useEffect(() => {
     const fetchAvailableDates = async () => {
       try {
-        const response = await fetch('https://attendance-app-node.onrender.com/available-dates');
+        const response = await fetch('http://localhost:3000/api/dates');
         const dates = await response.json();
         setIsLoading(false); // Set loading to false once data is fetched
 
@@ -40,7 +41,7 @@ export default function AttendanceRecords() {
       if (!selectedDate) return; // Guard against no selected date
 
       try {
-        const response = await fetch(`https://attendance-app-node.onrender.com/attendance-records?date=${selectedDate}`);
+        const response = await fetch(`http://localhost:3000/api/aggregate`);
         const records = await response.json();
         setAttendanceRecords(records);
       } catch (error) {
@@ -55,6 +56,7 @@ export default function AttendanceRecords() {
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
   };
+
 
   return (
     <main className="">
@@ -86,28 +88,32 @@ export default function AttendanceRecords() {
         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
           RRN
         </th>
-        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">
-          Status
-        </th>
+       
       </tr>
     </thead>
     
     <tbody className="bg-white divide-y divide-gray-200">
+  {attendanceRecords.map((record, index) => (
+    <tr key={index}>
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        <div className="flex flex-col sm:flex-row justify-between items-center my-2 border-b py-4">
+          <div className="w-full sm:w-1/3 text-left mb-2 sm:mb-0">
+            <Link href={`/attendance/${encodeURIComponent(record.rrn)}`}>
+              <div>{record.name}</div>
+            </Link>
+          </div>
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        {record.rrn}
+      </td>
+      <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${record.status === 'present' ? 'text-green-600' : 'text-red-600'}`}>
+        {record.status}
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-      {attendanceRecords.map((record, index) => (
-        <tr key={index}>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {record.name}
-          </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {record.rrn}
-          </td>
-          <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${record.status === 'present' ? 'text-green-600' : 'text-red-600'}`}>
-            {record.status}
-          </td>
-        </tr>
-      ))}
-    </tbody>
   </table>
 </div>
 {isLoading && 

@@ -20,11 +20,11 @@ export default function ExamResults() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('https://attendance-app-node.onrender.com/results'); // Adjust URL if necessary
+        const response = await axios.get(''); // Adjust URL if necessary
         setIsLoading(false); // Set loading to false once data is fetched
         setResults(response.data);
       } catch (error) {
-        console.error('Error fetching results:', error);
+        console.error('', error);
       }
     }
 

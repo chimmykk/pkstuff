@@ -36,56 +36,51 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 // lib.ts
-
-export interface LoginResult {
+type LoginResult = {
   success: boolean;
   message?: string;
-}
+};
 
 export async function login(formData: FormData): Promise<LoginResult> {
-  const inputPassword = formData.get("password");
+  const inputUsername = formData.get("username") as string;
+  const inputPassword = formData.get("password") as string;
 
   try {
-      const db = await getMongoDBClient(); // Establish connection to MongoDB
-      const collection = db.collection('password'); // Access the 'password' collection
+    const db = await getMongoDBClient(); // Establish connection to MongoDB
+    const collection = db.collection('password'); // Access the 'password' collection
 
-      console.log('Fetching hashed password from the database...');
-      const doc = await collection.findOne(); // Fetch the document containing the password
-      const storedHashedPassword = doc?.password;
+    console.log('Fetching hashed username, password, and role from the database...');
+    const doc = await collection.findOne({ username: inputUsername }); // Fetch the document containing the username, password, and role
+    const storedHashedUsername = doc?.username;
+    const storedHashedPassword = doc?.password;
+    const role = doc?.role;
 
-      console.log('Hashed password retrieved:', storedHashedPassword);
+    console.log('Hashed username, password, and role retrieved:', storedHashedUsername, storedHashedPassword, role);
 
-      if (!storedHashedPassword) {
-          console.log('No stored password found');
-          return { success: false, message: 'No stored password found' };
-      }
+    if (!storedHashedUsername || !storedHashedPassword || role === false) {
+      console.log('No stored username or password found, or role is false');
+      return { success: false, message: 'No stored username or password found, or role is false' };
+    }
 
-      // Check if inputPassword is null or not a string, and handle the case appropriately
-      if (typeof inputPassword !== "string") {
-        console.error("Password is not a string or is missing");
-        return { success: false, message: 'Password is not a string or is missing' };
-      }
+    // Use bcrypt to compare the submitted username and password with the hashed values
+    const isPasswordValid = await bcrypt.compare(inputPassword, storedHashedPassword);
+    if (isPasswordValid) {
+      // Assuming successful login
+      const expires = new Date(Date.now() + 604800 * 1000); // 7 days from now
+      const session = await encrypt({ user: { username: inputUsername, password: inputPassword }, expires });
 
-      // Use bcrypt to compare the submitted password with the hashed password
-      const match = await bcrypt.compare(inputPassword, storedHashedPassword);
-      if (match) {
-          // Assuming successful login
-          const expires = new Date(Date.now() + 604800 * 1000); // 7 days from now
-          const session = await encrypt({ user: { password: inputPassword }, expires });
-
-          cookies().set("session", session, { expires, httpOnly: true });
-          console.log('Password correct');
-          return { success: true }; // Indicate successful login
-      } else {
-          console.log('Wrong password');
-          return { success: false, message: 'Wrong password' }; // Indicate failed login
-      }
+      cookies().set("session", session, { expires, httpOnly: true });
+      console.log('Username and password correct');
+      return { success: true }; // Indicate successful login
+    } else {
+      console.log('Wrong username or password');
+      return { success: false, message: 'Wrong username or password' }; // Indicate failed login
+    }
   } catch (error) {
-      console.error('Error fetching or comparing password:', error);
-      return { success: false, message: 'Error fetching or comparing password' };
+    console.error('Error fetching or comparing username or password:', error);
+    return { success: false, message: 'Error fetching or comparing username or password' };
   }
 }
-
 
 export async function logout() {
   // Destroy the session

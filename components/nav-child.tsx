@@ -53,10 +53,12 @@ export default function NavbarChild({session}: any) {
                         <BookIcon className="w-4 h-4 mr-2" />
                         <span>Attendance Records</span>
                     </Link>
-                    <Link href="/exam-results" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center px-4 py-4 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-100">
-                        <BookCheck className="w-4 h-4 mr-2" />
-                        <span>Exam results</span>
+                
+                    <Link href="/adminreg" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center px-4 py-4 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-100">
+                        <BookIcon className="w-4 h-4 mr-2" />
+                        <span>Create Admin</span>
                     </Link>
+                
                     {session && (
                         <Link href="/addResult" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center px-4 py-4 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-100">
                             {/* Choose an appropriate Lucide icon */}

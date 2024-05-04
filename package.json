@@ -17,6 +17,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "child_process": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.367.0",
@@ -32,6 +34,7 @@
     "react-toastify": "^10.0.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "twilio": "^5.0.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
