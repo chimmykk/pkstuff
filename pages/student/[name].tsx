@@ -1,5 +1,3 @@
-// pages/student/[name].tsx
-
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -35,15 +33,18 @@ const StudentDetailsPage = () => {
 
       const data = await res.json();
       console.log(data.message);
-      
+
       setAttendance((prevAttendance) => ({
         ...prevAttendance,
         [subject]: status,
       }));
-
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const redirectToHome = () => {
+    router.push('/');
   };
 
   return (
@@ -91,6 +92,8 @@ const StudentDetailsPage = () => {
           </div>
         ))}
       </div>
+      <br></br>
+      <button onClick={redirectToHome}>Go back Home</button>
     </div>
   );
 };

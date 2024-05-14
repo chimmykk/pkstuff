@@ -16,9 +16,10 @@ export default function Chat() {
 
     const handleAvatarClick = () => {
         setIsChatOpen(!isChatOpen);
-        setSelectedOption(null); 
+        setSelectedOption(null);
+        setMessageResponsePairs([]); // Clear messageResponsePairs
     };
-
+    
     useEffect(() => {
         // Scroll to the bottom of the chat container when messageResponsePairs change
         if (messagesEndRef.current) {

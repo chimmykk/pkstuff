@@ -1,5 +1,5 @@
-const accountSid = 'ACa3f90d540080d32c3b1ee633cbaf9430';
-const authToken = '9371aea3673693a7f8af3da737a376cd';
+const accountSid = '';
+const authToken = '';
 const client = require('twilio')(accountSid, authToken);
 const fetch = require('node-fetch');
 
@@ -17,7 +17,7 @@ fetch('http://localhost:3000/api/attendanceaggr')
       client.messages
         .create({
           body: messageBody,
-          from: '+15705144536',
+          from: '+13236162578',
           to: phoneNumber
         })
         .then(message => console.log(`Message sent to ${phoneNumber}. SID: ${message.sid}`))
