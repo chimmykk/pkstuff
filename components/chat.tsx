@@ -150,13 +150,19 @@ export default function Chat() {
 
                         {/* Input element */}
                         <div className="absolute bottom-0 w-full flex items-center justify-center border-t p-4 bg-white border-[#dfdfdf]">
-                            <input
-                                type="text"
-                                placeholder="Type your message..."
-                                className="flex-grow outline-none mx-2 text-base"
-                                value={inputValue}
-                                onChange={(e) => setInputValue(e.target.value)}
-                            />
+                        <input
+    type="text"
+    placeholder="Type your message..."
+    className="flex-grow outline-none mx-2 text-base"
+    value={inputValue}
+    onChange={(e) => setInputValue(e.target.value)}
+    onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+            handleSendClick();
+        }
+    }}
+/>
+
                             <FiSend className="text-[#2464EA] cursor-pointer" onClick={handleSendClick} />
                         </div>
                     </div>
